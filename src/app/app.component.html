@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" role="heading">
+  <div class="container">{{ title }}</div>
+</mat-toolbar>
+
+<div class="container">
+  <mat-horizontal-stepper linear (selectionChange)="step($event)" #stepper>
+    <mat-step [completed]="raw" label="ป้อนข้อความ">
+      <mat-form-field>
+        <textarea rows="20" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการพิสูจน์กันเถอะ" required></textarea>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
+      </div>
+    </mat-step>
+    <mat-step [completed]="result" label="ตรวจสอบผลลัพท์">
+      <p>{{result}}</p>
+      <div class="button-row">
+        <button mat-button matStepperPrevious>กลับ</button>
+        <button mat-raised-button color="primary" matStepperNext>เสร็จสิ้น</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>เสร็จสิ้น</ng-template>
+      จบแล้วจ้า
+      <div class="button-row">
+        <button mat-button matStepperPrevious>กลับ</button>
+        <button mat-raised-button color="accent" (click)="stepper.reset()">เริ่มใหม่</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
