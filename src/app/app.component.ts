@@ -11,7 +11,6 @@ import { RuleService } from './rule.service';
 })
 
 export class AppComponent {
-  title = 'ฝ่ายพิสูจน์อักษร';
   rulesets: Ruleset[];
 
   constructor(private ruleService: RuleService) { }
@@ -27,6 +26,10 @@ export class AppComponent {
         this.result = ruleset.apply(this.result);
       }
     }
+  }
+
+  example(): void {
+    this.raw = "ไม่อนุญาติให้เข้าสังเกตุการณ์การผัดกระเพราที่จตุรัสกลางเมืองฝรั่งเศษนะค่ะ";
   }
 
   reset(stepper: MatStepper): void {

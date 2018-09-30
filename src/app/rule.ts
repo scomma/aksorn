@@ -17,7 +17,7 @@ export class Rule {
     var result = target;
     for (let pattern of this.match) {
       if (pattern) {
-        result = target.replace(pattern, this.suggest);
+        result = result.replace(pattern, this.suggest);
       }
     }
     return result;

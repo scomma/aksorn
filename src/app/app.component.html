@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" role="heading">
   <div class="container">
-    <div class="filler">{{ title }}</div>
+    ฝ่ายพิสูจน์อักษร <small>(α)</small>
   </div>
 </mat-toolbar>
 
@@ -11,6 +11,7 @@
         <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ต้นฉบับในช่องนี้กันเถอะ" required></textarea>
       </mat-form-field>
       <div class="button-row">
+        <button mat-button (click)="example()">ตัวอย่าง</button>
         <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
       </div>
     </mat-step>
