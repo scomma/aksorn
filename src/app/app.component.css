@@ -1,6 +1,11 @@
 .container {
-  width: 600px;
+  max-width: 600px;
+  overflow: hidden;
   margin: auto;
+}
+
+.filler {
+  width: 600px;
 }
 
 mat-form-field {

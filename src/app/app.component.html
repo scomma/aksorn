@@ -1,31 +1,35 @@
 <mat-toolbar color="primary" role="heading">
-  <div class="container">{{ title }}</div>
+  <div class="container">
+    <div class="filler">{{ title }}</div>
+  </div>
 </mat-toolbar>
 
 <div class="container">
-  <mat-horizontal-stepper linear (selectionChange)="step($event)" #stepper>
-    <mat-step [completed]="raw" label="ป้อนข้อความ">
+  <mat-vertical-stepper linear (selectionChange)="step($event)" #stepper>
+    <mat-step [completed]="raw" label="ใส่ต้นฉบับ">
       <mat-form-field>
-        <textarea rows="20" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการพิสูจน์กันเถอะ" required></textarea>
+        <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ต้นฉบับในช่องนี้กันเถอะ" required></textarea>
       </mat-form-field>
       <div class="button-row">
         <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
       </div>
     </mat-step>
-    <mat-step [completed]="result" label="ตรวจสอบผลลัพท์">
-      <p>{{result}}</p>
+    <mat-step [completed]="result" label="จุดที่พบปัญหา">
+      <pre>{{result}}</pre>
       <div class="button-row">
         <button mat-button matStepperPrevious>กลับ</button>
-        <button mat-raised-button color="primary" matStepperNext>เสร็จสิ้น</button>
+        <button mat-raised-button color="primary" matStepperNext>ปรับปรุงทั้งหมด</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>เสร็จสิ้น</ng-template>
-      จบแล้วจ้า
+      <ng-template matStepLabel>ตรวจสอบผลลัพท์</ng-template>
+      <mat-form-field>
+        <textarea rows="12" matInput [ngModel]="result" readonly></textarea>
+      </mat-form-field>
       <div class="button-row">
         <button mat-button matStepperPrevious>กลับ</button>
-        <button mat-raised-button color="accent" (click)="stepper.reset()">เริ่มใหม่</button>
+        <button mat-raised-button color="accent" (click)="reset(stepper)">เริ่มใหม่</button>
       </div>
     </mat-step>
-  </mat-horizontal-stepper>
+  </mat-vertical-stepper>
 </div>
