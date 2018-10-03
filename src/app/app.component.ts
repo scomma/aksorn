@@ -12,19 +12,22 @@ import { RuleService } from './rule.service';
 
 export class AppComponent {
   rulesets: Ruleset[];
+  suggestAll: boolean = false;
+  raw: string;
+  segments: object[];
+  result: string;
 
   constructor(private ruleService: RuleService) { }
 
   ngOnInit() {
-    this.ruleService.getRulesets().subscribe(rulesets => this.rulesets = rulesets);
+    this.ruleService.init();
   }
 
   step(event: StepperSelectionEvent): void {
     if (event.previouslySelectedIndex == 0 && event.selectedIndex == 1) {
-      this.result = this.raw;
-      for (let ruleset: Ruleset of this.rulesets) {
-        this.result = ruleset.apply(this.result);
-      }
+      this.segments = this.ruleService.partition(this.raw);
+    } else if (event.previouslySelectedIndex == 1 && event.selectedIndex == 2) {
+      this.result = this.ruleService.applyAll(this.raw);
     }
   }
 
@@ -34,7 +37,35 @@ export class AppComponent {
 
   reset(stepper: MatStepper): void {
     this.raw = this.result = "";
+    this.suggestAll = false;
     stepper.reset();
+  }
+
+  restore(segment: object): void {
+    if (segment.original) {
+      segment.text = segment.original;
+      delete segment.original;
+    }
+  }
+
+  suggest(segment: object): void {
+    if (segment.suggest) {
+      segment.original = segment.text;
+      segment.text = segment.suggest;
+    }
+  }
+
+  toggle(segment: object): void {
+    if (segment.original) this.restore(segment);
+    else if (segment.suggest) this.suggest(segment);
+  }
+
+  toggleAll(event): void {
+    if (event.checked) {
+      this.segments.map(this.suggest);
+    } else {
+      this.segments.map(this.restore);
+    }
   }
 }
 

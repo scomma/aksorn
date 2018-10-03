@@ -8,22 +8,31 @@
   <mat-vertical-stepper linear (selectionChange)="step($event)" #stepper>
     <mat-step [completed]="raw" label="ใส่ต้นฉบับ">
       <mat-form-field>
-        <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ต้นฉบับในช่องนี้กันเถอะ" required></textarea>
+        <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการตรวจสอบที่นี่" required></textarea>
       </mat-form-field>
       <div class="button-row">
         <button mat-button (click)="example()">ตัวอย่าง</button>
         <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
       </div>
     </mat-step>
-    <mat-step [completed]="result" label="จุดที่พบปัญหา">
-      <pre>{{result}}</pre>
+    <mat-step label="จุดที่พบปัญหา">
+      <mat-slide-toggle [(ngModel)]="suggestAll" (change)="toggleAll($event)">แสดงข้อเสนอแนะ</mat-slide-toggle>
+      <p class="preview">
+        <span
+          *ngFor="let segment of segments"
+          [class.marked]="segment.suggest"
+          [class.suggest]="segment.original"
+          [innerHTML]="segment.text | nl2br"
+          (click)="toggle(segment)"
+        ></span>
+      </p>
       <div class="button-row">
         <button mat-button matStepperPrevious>กลับ</button>
         <button mat-raised-button color="primary" matStepperNext>ปรับปรุงทั้งหมด</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>ตรวจสอบผลลัพท์</ng-template>
+      <ng-template matStepLabel>ตรวจสอบผลลัพธ์</ng-template>
       <mat-form-field>
         <textarea rows="12" matInput [ngModel]="result" readonly></textarea>
       </mat-form-field>

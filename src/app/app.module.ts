@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatStepperModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatInputModule, MatSlideToggleModule, MatFormFieldModule, MatStepperModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { Nl2BrPipeModule } from 'nl2br-pipe';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatFormFieldModule,
     MatStepperModule,
-    HttpClientModule
+    HttpClientModule,
+    Nl2BrPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

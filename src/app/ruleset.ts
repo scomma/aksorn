@@ -11,11 +11,11 @@ export class Ruleset {
     this.source = source;
   }
 
+  check(target: string): string[] {
+    return [].concat(...this.rules.map(rule => rule.check(target)));
+  }
+
   apply(target: string): string {
-    var result = target;
-    for (let rule of this.rules) {
-      result = rule.apply(result);
-    }
-    return result;
+    return this.rules.reduce((text, rule) => rule.apply(text), target);
   }
 }

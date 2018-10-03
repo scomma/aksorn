@@ -13,13 +13,21 @@ export class Rule {
     this.suggest = suggest;
   }
 
-  apply(target: string): string {
-    var result = target;
+  check(target: string): string[] {
+    var marks: string[] = [];
     for (let pattern of this.match) {
-      if (pattern) {
-        result = result.replace(pattern, this.suggest);
+      var m;
+      if (!pattern) continue;
+      while (m = pattern.exec(target)) {
+        marks.push({index: m.index, text: m[0], suggest: this.suggest});
       }
     }
-    return result;
+    return marks;
+  }
+
+  apply(target: string): string {
+    return this.match.reduce((text, pattern) =>
+      pattern ? text.replace(pattern, this.suggest) : text,
+    target);
   }
 }
