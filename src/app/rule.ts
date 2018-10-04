@@ -13,8 +13,8 @@ export class Rule {
     this.suggest = suggest;
   }
 
-  check(target: string): string[] {
-    var marks: string[] = [];
+  check(target: string): any {
+    var marks = [];
     for (let pattern of this.match) {
       var m;
       if (!pattern) continue;

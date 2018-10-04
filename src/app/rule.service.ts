@@ -27,7 +27,7 @@ export class RuleService {
     );
   }
 
-  checkAll(raw: string): string[] {
+  checkAll(raw: string): any {
     return [].concat(...this.rulesets.map(ruleset => ruleset.check(raw)));
   }
 
@@ -35,13 +35,13 @@ export class RuleService {
     return this.rulesets.reduce((text, ruleset) => ruleset.apply(text), raw);
   }
 
-  partition(raw: string): object[] {
+  partition(raw: string): any {
     var marks = this.checkAll(raw).sort((m1, m2) => {
       if (m1.index > m2.index)      return 1;
       else if (m1.index < m2.index) return -1;
       else                          return 0;
     });
-    var segments: object[] = [];
+    var segments = [];
     var head = 0;
     var m;
 

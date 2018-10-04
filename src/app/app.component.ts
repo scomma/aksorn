@@ -1,5 +1,6 @@
 import { Component, enableProdMode } from '@angular/core';
 import { MatStepper } from '@angular/material';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 import { Ruleset } from './ruleset';
 import { RuleService } from './rule.service';
@@ -14,7 +15,7 @@ export class AppComponent {
   rulesets: Ruleset[];
   suggestAll: boolean = false;
   raw: string;
-  segments: object[];
+  segments;
   result: string;
 
   constructor(private ruleService: RuleService) { }
@@ -41,21 +42,21 @@ export class AppComponent {
     stepper.reset();
   }
 
-  restore(segment: object): void {
+  restore(segment): void {
     if (segment.original) {
       segment.text = segment.original;
       delete segment.original;
     }
   }
 
-  suggest(segment: object): void {
+  suggest(segment): void {
     if (segment.suggest) {
       segment.original = segment.text;
       segment.text = segment.suggest;
     }
   }
 
-  toggle(segment: object): void {
+  toggle(segment): void {
     if (segment.original) this.restore(segment);
     else if (segment.suggest) this.suggest(segment);
   }
