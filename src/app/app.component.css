@@ -1,11 +1,34 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   max-width: 600px;
   overflow: hidden;
   margin: auto;
 }
 
+.container.main {
+  flex: 1;
+  width: 100%;
+}
+
+mat-toolbar.footer {
+  font-size: 14px;
+}
+
 mat-toolbar .container {
   width: 600px;
+}
+
+mat-toolbar .flex {
+  display: flex;
+}
+
+mat-toolbar .filler {
+  flex: 1 1 auto;
 }
 
 mat-toolbar small {

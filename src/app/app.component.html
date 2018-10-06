@@ -1,45 +1,54 @@
-<mat-toolbar color="primary" role="heading">
-  <div class="container">
-    ฝ่ายพิสูจน์อักษร <small>(α)</small>
-  </div>
-</mat-toolbar>
+<div class="root">
+  <mat-toolbar color="primary" role="heading">
+    <div class="container">
+      <span>ฝ่ายพิสูจน์อักษร <small>(α)</small></span>
+    </div>
+  </mat-toolbar>
 
-<div class="container">
-  <mat-vertical-stepper linear (selectionChange)="step($event)" #stepper>
-    <mat-step [completed]="raw" label="ใส่ต้นฉบับ">
-      <mat-form-field>
-        <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการตรวจสอบที่นี่" required></textarea>
-      </mat-form-field>
-      <div class="button-row">
-        <button mat-button (click)="example()">ตัวอย่าง</button>
-        <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
-      </div>
-    </mat-step>
-    <mat-step label="จุดที่พบปัญหา">
-      <mat-slide-toggle [(ngModel)]="suggestAll" (change)="toggleAll($event)">แสดงข้อเสนอแนะ</mat-slide-toggle>
-      <p class="preview">
-        <span
-          *ngFor="let segment of segments"
-          [class.marked]="segment.suggest"
-          [class.suggest]="segment.original"
-          [innerHTML]="segment.text | nl2br"
-          (click)="toggle(segment)"
-        ></span>
-      </p>
-      <div class="button-row">
-        <button mat-button matStepperPrevious>กลับ</button>
-        <button mat-raised-button color="primary" matStepperNext>ปรับปรุงทั้งหมด</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>ตรวจสอบผลลัพธ์</ng-template>
-      <mat-form-field>
-        <textarea rows="12" matInput [ngModel]="result" readonly></textarea>
-      </mat-form-field>
-      <div class="button-row">
-        <button mat-button matStepperPrevious>กลับ</button>
-        <button mat-raised-button color="accent" (click)="reset(stepper)">เริ่มใหม่</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
+  <div class="container main">
+    <mat-horizontal-stepper linear (selectionChange)="step($event)" #stepper>
+      <mat-step [completed]="raw" label="ต้นฉบับ">
+        <mat-form-field>
+          <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการตรวจสอบคำที่มักสะกดผิด คำทับศัพท์ เครื่องหมายวรรคตอน" required></textarea>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-button (click)="example()">ตัวอย่าง</button>
+          <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
+        </div>
+      </mat-step>
+      <mat-step label="แก้ไข">
+        <mat-slide-toggle [(ngModel)]="suggestAll" (change)="toggleAll($event)">แสดงข้อเสนอแนะ</mat-slide-toggle>
+        <p class="preview">
+          <span
+            *ngFor="let segment of segments"
+            [class.marked]="segment.suggest"
+            [class.suggest]="segment.original"
+            [innerHTML]="segment.text | nl2br"
+            (click)="toggle(segment)"
+          ></span>
+        </p>
+        <div class="button-row">
+          <button mat-button matStepperPrevious>กลับ</button>
+          <button mat-raised-button color="primary" matStepperNext>ปรับปรุงทั้งหมด</button>
+        </div>
+      </mat-step>
+      <mat-step label="ผล">
+        <mat-form-field>
+          <textarea rows="12" matInput [ngModel]="result" readonly></textarea>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-button matStepperPrevious>กลับ</button>
+          <button mat-raised-button color="accent" (click)="reset(stepper)">เริ่มใหม่</button>
+        </div>
+        <p><small>โปรแกรมเป็นรุ่นทดลอง โปรดตรวจทานก่อนนำไปใช้งาน</small></p>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  <mat-toolbar class="footer" role="footer">
+    <div class="container flex">
+      <a mat-button href="https://github.com/scomma/inscription-1">สมุดกฎ</a>
+      <span class="filler"></span>
+    </div>
+  </mat-toolbar>
 </div>
