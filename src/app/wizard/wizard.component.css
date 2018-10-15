@@ -1,0 +1,27 @@
+mat-form-field {
+  width: 100%;
+}
+
+p.preview {
+  margin: 24px 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+p.preview .marked {
+  background-color: #fee;
+  color: red;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+p.preview .marked.suggest {
+  background-color: #efe;
+  color: #080;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}

@@ -1,52 +1,18 @@
 <div class="root">
   <mat-toolbar color="primary" role="heading">
     <div class="container">
-      <span>ฝ่ายพิสูจน์อักษร <small>(α)</small></span>
+      <a routerLink="/">พิสูจน์อักษร <small>(β)</small></a>
     </div>
   </mat-toolbar>
 
   <div class="container main">
-    <mat-horizontal-stepper linear (selectionChange)="step($event)" #stepper>
-      <mat-step [completed]="raw" label="ต้นฉบับ">
-        <mat-form-field>
-          <textarea rows="12" matInput [(ngModel)]="raw" placeholder="ใส่ข้อความที่ต้องการตรวจสอบคำที่มักสะกดผิด คำทับศัพท์ เครื่องหมายวรรคตอน" required></textarea>
-        </mat-form-field>
-        <div class="button-row">
-          <button mat-button (click)="example()">ตัวอย่าง</button>
-          <button mat-raised-button color="primary" matStepperNext>ต่อไป</button>
-        </div>
-      </mat-step>
-      <mat-step label="แก้ไข">
-        <mat-slide-toggle [(ngModel)]="suggestAll" (change)="toggleAll($event)">แสดงข้อเสนอแนะ</mat-slide-toggle>
-        <p class="preview">
-          <span
-            *ngFor="let segment of segments"
-            [class.marked]="segment.suggest"
-            [class.suggest]="segment.original"
-            [innerHTML]="segment.text | nl2br"
-            (click)="toggle(segment)"
-          ></span>
-        </p>
-        <div class="button-row">
-          <button mat-button matStepperPrevious>กลับ</button>
-          <button mat-raised-button color="primary" matStepperNext>ปรับปรุงทั้งหมด</button>
-        </div>
-      </mat-step>
-      <mat-step label="ผล">
-        <mat-form-field>
-          <textarea rows="12" matInput [ngModel]="result" readonly></textarea>
-        </mat-form-field>
-        <div class="button-row">
-          <button mat-button matStepperPrevious>กลับ</button>
-          <button mat-raised-button color="accent" (click)="reset(stepper)">เริ่มใหม่</button>
-        </div>
-        <p><small>โปรแกรมเป็นรุ่นทดลอง โปรดตรวจทานก่อนนำไปใช้งาน</small></p>
-      </mat-step>
-    </mat-horizontal-stepper>
+    <router-outlet></router-outlet>
   </div>
 
   <mat-toolbar class="footer" role="footer">
     <div class="container flex">
+      <!--<a mat-button routerLink="/about">เกี่ยวกับ</a>-->
+      <a mat-button href="https://blog.aksorn.org/">บล็อก</a>
       <a mat-button href="https://github.com/scomma/inscription-1">สมุดกฎ</a>
       <span class="filler"></span>
     </div>
