@@ -1,0 +1,5 @@
+@media (max-width: 599px) {
+  h3, p {
+    padding: 0 16px;
+  }
+}
