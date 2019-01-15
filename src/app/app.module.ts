@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { WizardComponent } from './wizard/wizard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { Nl2BrPipeModule } from 'nl2br-pipe';
 const appRoutes: Routes = [
   { path: 'about', component: AboutPageComponent },
   { path: '', component: WizardComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
     AppComponent,
     AboutPageComponent,
     WizardComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

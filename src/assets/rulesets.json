@@ -1,1 +1,24 @@
+Step 1/6 : FROM node:8.11
+8.11: Pulling from library/node
+Digest: sha256:3422df4f7532b26b55275ad7b6dc17ec35f77192b04ce22e62e43541f3d28eb3
+Status: Downloaded newer image for node:8.11
+ ---> 8198006b2b57
+Step 2/6 : WORKDIR /src
+Removing intermediate container a2426b8a74bd
+ ---> 680a1ce0407d
+Step 3/6 : ADD package.json .
+ ---> 58f73b3d64ba
+Step 4/6 : RUN npm install --quiet
+ ---> Running in c1b3ca5e9ea5
+added 1 package in 1.167s
+Removing intermediate container c1b3ca5e9ea5
+ ---> ceec5db96a8f
+Step 5/6 : ADD . .
+ ---> d6e86dce8641
+Step 6/6 : CMD npm test
+ ---> Running in a95f65da24da
+Removing intermediate container a95f65da24da
+ ---> 399773d5af1c
+Successfully built 399773d5af1c
+Successfully tagged aksorn_rulebook:latest
 [{"name":"misspellings.txt","rules":[{"match":["กฏ"],"suggest":"กฎ"},{"match":["กะเพร?าะ","กระเพราะ"],"suggest":"กระเพาะ"},{"match":["กระทันหัน"],"suggest":"กะทันหัน"},{"match":["กร?ะเพา(?!ะ)","กระเพรา(?!ะ)"],"suggest":"กะเพรา"},{"match":["กระหรี่"],"suggest":"กะหรี่"},{"match":["เกณียน"],"suggest":"เกษียณ"},{"match":["เกษร"],"suggest":"เกสร"},{"match":["เกาท์","เก๊าท์"],"suggest":"เกาต์"},{"match":["แก๊งค์","แก๊งก์"],"suggest":"แก๊ง"},{"match":["กบฎ","กบถ"],"suggest":"กบฏ\t"},{"match":["คลีนิ[กค]","คลินิค"],"suggest":"คลินิก"},{"match":["คำนวน"],"suggest":"คำนวณ"},{"match":["แคตต?า(ล็|ล)อก"],"suggest":"แค็ตตาล็อก"},{"match":["โควต้า"],"suggest":"โควตา"},{"match":["งัย"],"suggest":"ไง"},{"match":["จตุรัส"],"suggest":"จัตุรัส"},{"match":["จัย"],"suggest":"ใจ"},{"match":["ช็อคโก(แ|เ)ลต","ช็อกโกเลต"],"suggest":"ช็อกโกแลต"},{"match":["ซีรี่ส์","ซี(รี|รี่)(ยส์|ย์)"],"suggest":"ซีรีส์"},{"match":["ไดร์ฟ"],"suggest":"ไดรฟ์"},{"match":["ตระกร้า"],"suggest":"ตะกร้า"},{"match":["ใต้ฝุ่น"],"suggest":"ไต้ฝุ่น"},{"match":["เท่ห์"],"suggest":"เท่"},{"match":["แท๊กซี่"],"suggest":"แท็กซี่"},{"match":["นำ้"],"suggest":"น้ำ"},{"match":["น้ำแข็งใส"],"suggest":"น้ำแข็งไส"},{"match":["โน๊ต"],"suggest":"โน้ต"},{"match":["เบรค"],"suggest":"เบรก"},{"match":["แบงค์","แบ๊ง(ค์|ก์)","แบ็ง(ค์|ก์)"],"suggest":"แบงก์"},{"match":["(?<=หรือ)ป่าว"],"suggest":"เปล่า"},{"match":["ปั้ม"],"suggest":"ปั๊ม"},{"match":["ปิคนิค"],"suggest":"ปิกนิก"},{"match":["เปอร์เซนต์"],"suggest":"เปอร์เซ็นต์"},{"match":["ผักขม"],"suggest":"ผักโขม"},{"match":["ผลลัพท์"],"suggest":"ผลลัพธ์"},{"match":["ฝรั่งเศษ"],"suggest":"ฝรั่งเศส"},{"match":["ฟังก์ชั่น"],"suggest":"ฟังก์ชัน"},{"match":["ฟูด","ฟู๊ด"],"suggest":"ฟู้ด"},{"match":["มาตราฐาน"],"suggest":"มาตรฐาน"},{"match":["มาส์ก"],"suggest":"มาสก์"},{"match":["ม๊า"],"suggest":"ม้า"},{"match":["มุข(?=ตลก)","(?<=เล่น|ปล่อย|ยิง|ชง|ตบ)มุข"],"suggest":"มุก"},{"match":["รถเมย์"],"suggest":"รถเมล์"},{"match":["ลิงค์","ลิ้ง(ก์|ค์)"],"suggest":"ลิงก์"},{"match":["โล่ห์"],"suggest":"โล่"},{"match":["วี(ดี|ดิ)โอ","วิดิโอ"],"suggest":"วิดีโอ"},{"match":["ศรีษะ"],"suggest":"ศีรษะ"},{"match":["เสปรย์"],"suggest":"สเปรย์"},{"match":["แสกน"],"suggest":"สแกน"},{"match":["สังเกตุ"],"suggest":"สังเกต"},{"match":["สาธร"],"suggest":"สาทร"},{"match":["(?<=ทะเล|แมลง)สาป"],"suggest":"สาบ"},{"match":["สำอางค์"],"suggest":"สำอาง"},{"match":["เสพย์"],"suggest":"เสพ"},{"match":["อนุญาติ","อณุญา(ต|ติ)"],"suggest":"อนุญาต"},{"match":["ออฟฟิ[ซสต]"],"suggest":"ออฟฟิศ"},{"match":["อัลบัม"],"suggest":"อัลบั้ม"},{"match":["อุโมง(?!ค์)"],"suggest":"อุโมงค์"},{"match":["แอ็[พป]","แอพ"],"suggest":"แอป"},{"match":["โอกาศ"],"suggest":"โอกาส"},{"match":["ไอศครีม","ไอศกรีม"],"suggest":""}]},{"name":"naka.txt","rules":[{"match":["(?<!ภาช|พยัญช|อาส|วัฒ|ฐา|พาห|ช|สมรรถ|มา|วจ)นะค่ะ"],"suggest":"นะคะ"},{"match":["(?<=หรือ|หรอ|ไหม)ค่ะ"],"suggest":"คะ"},{"match":["น่ะคะ"],"suggest":"น่ะค่ะ"},{"match":["(?<=ขอ(โทษ|อภัย))คะ"],"suggest":"ค่ะ"},{"match":["(?<=หรือ|เหรอ)ค่ะ"],"suggest":"คะ"},{"match":["(?<=ขอบคุณ|สวัสดี)คะ"],"suggest":"ค่ะ"},{"match":["ค๊ะ","คะ"],"suggest":""}]},{"name":"punctuations.txt","rules":[{"match":["(?<=\\w)ๆ(?=\\w)","(?<=\\w)ๆ\\s{2,}(?=\\w)","\\s+ๆ\\s*(?=\\w)"],"suggest":"ๆ "},{"match":["\\s+ๆ$"],"suggest":"ๆ"},{"match":["\\s+\\?"],"suggest":"?"},{"match":["\\s+!","!"],"suggest":""}]}]
